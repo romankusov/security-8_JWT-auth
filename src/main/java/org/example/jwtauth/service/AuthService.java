@@ -28,6 +28,7 @@ public class AuthService {
     public AuthDto register(AuthDto authDto) {
 
         User user = new User();
+        //user.setName(authDto.getName());
         user.setEmail(authDto.getEmail());
         user.setPassword(passwordEncoder.encode(authDto.getPassword()));
         user.setRole(authDto.getRole());

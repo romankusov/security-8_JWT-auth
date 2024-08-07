@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.jwtauth.model.Book;
 import org.example.jwtauth.service.BookService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/postNewBook")
     public ResponseEntity<Book> postNewBook(@RequestBody Book book) {
         return ResponseEntity.ok(bookService.postNewBook(book));

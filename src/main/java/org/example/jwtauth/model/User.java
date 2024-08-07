@@ -24,6 +24,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    //private String name;
     @Column(unique=true)
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -39,7 +40,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
+        return List.of(new SimpleGrantedAuthority(String.format("ROLE_%s", role)));
     }
 
     @Override
